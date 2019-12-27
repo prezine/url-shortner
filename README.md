@@ -1,6 +1,6 @@
 # url-shortner
 
-Like the [cutt.ly](https://cutt.ly) and [bitly](https://bitly.com) these tool is built on PHP to help you shorten your URL, the good news is, it's fine if you don't want to store URL shortened in your Database, you can store it in a file and it'll work just fine.
+Like the [cutt.ly](https://cutt.ly) and [bitly](https://bitly.com) this tool is built on PHP to help you shorten your URL, the good news is, it's fine if you don't want to store URL shortened in your Database, you can store it in a file and it'll work just fine.
 
 ## Getting Started
 ```bash
