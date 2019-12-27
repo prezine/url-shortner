@@ -1,0 +1,17 @@
+# Protect My Directories
+Options -Indexes
+
+# Protect my htaccess file
+<Files .htaccess>
+	order deny,allow
+	deny from all
+</Files>
+
+# Clean Url for User Profiles
+  AddDefaultCharset UTF-8
+  FileETag None
+  Options +FollowSymLinks -MultiViews
+
+RewriteEngine On
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^([^.]+)$ $1.php [NC,L]

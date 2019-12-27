@@ -11,11 +11,6 @@
 			// $this->conn = $conn;
 			$this->baseurl = $baseurl;
 		}
-		public function fuse($url)
-		{
-			$baseurl = $this->baseurl;
-			return $baseurl . $url ;
-		}
 		public function generator($len) {
 		    $char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		    $randString = '';
@@ -26,8 +21,20 @@
 		}
 		public function shorten($url)
 		{
-			// return $this->generator(8);
-			//return $this->fuse($url);
-			return $this->fileReader(__DIR__."/../storage/database.txt"); 
+			$generated = $this->generator(8);
+			$formated_for_storage = $generated.'='.$url.PHP_EOL;
+			if ($this->fileAuthor($formated_for_storage) > 0) {
+				return $this->baseurl . $generated;
+			} else {
+				return "Ooops! Something went wrong, url cannot be shortened at the moment...";
+			}
+		}
+		public function retrieveURL($search)
+		{
+			$min = substr($search, strrpos($search, '-') + 1);
+			list($qwerty, $key) = explode("/", $min);
+			$result = $this->fileSearcher(trim($key));
+			list($crypt, $url) = explode("=", $result);
+			return $result;
 		}
 	}

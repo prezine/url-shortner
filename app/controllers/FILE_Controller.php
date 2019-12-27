@@ -4,11 +4,7 @@
 	 */
 	class FileHandler
 	{
-		public $filepath;
-		public function __construct($filepath = __DIR__."/../storage/database.txt")
-		{
-			$this->filepath = $filepath;
-		}
+		private $filepath = __DIR__."/../storage/database.txt";
 		public function fileReader()
 		{
 			$filepath = $this->filepath;
@@ -16,17 +12,16 @@
 			return fgets($textDatabase);
 			fclose($textDatabase);
 		}
-		public function fileAuthor($shortcrypt, $url)
+		public function fileAuthor($data)
 		{
 			$filepath = $this->filepath;
-			$data = $shortcrypt.'='.$url.PHP_EOL;
 			$fp = fopen($filepath, 'a');
-			fwrite($fp, $data);
+			return fwrite($fp, $data);
+			fclose($fp);
 		}
-		public function fileSearcher($url)
+		public function fileSearcher($search)
 		{
 			$filepath = $this->filepath;
-			$search = 'XgS0s09DI';
 			$lines = file($filepath);
 			foreach($lines as $line)
 			{
